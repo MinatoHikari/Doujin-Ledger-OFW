@@ -7,15 +7,17 @@ import LeftSidebar from "../components/LeftSidebar.astro";
 import RightSidebar from "../components/RightSidebar.astro";
 import ContentLink from "../components/ContentLink.vue";
 import * as CONFIG from "../config";
+import { formatUrl } from "../utils/tools";
 import Left from "~icons/tabler/arrow-bar-to-left";
 import Right from "~icons/tabler/arrow-bar-to-right";
 import "../styles/main.scss";
+import { normalizePath } from "vite";
 
 const { content = {}, frontmatter = {}, canonicalURL } = Astro.props;
 const currentPage = new URL(Astro.request.url).pathname;
-console.log(currentPage);
-const index = CONFIG.SIDEBAR.findIndex((i) => i.link === currentPage);
-console.log(index);
+const index = CONFIG.SIDEBAR.findIndex((i) => {
+  return formatUrl(i.link) === formatUrl(currentPage);
+});
 let prevLink = "";
 let prevTitle = "";
 for (let i = index - 1; i > -1; i--) {
