@@ -4,25 +4,30 @@ import HeadCommon from "../components/HeadCommon.astro";
 import HeadSEO from "../components/HeadSEO.astro";
 import MainButton from "../components/MainButton.vue";
 import Download from "~icons/bx/download";
+import Coocker from "~icons/tabler/cooker";
+import ZoomQ from "~icons/tabler/help-triangle";
+import DoorEnter from "~icons/tabler/door-enter";
+import WorldDown from "~icons/tabler/world-down";
 
 const navItems = [
   {
     title: "开始使用",
     description: "了解APP功能、如何使用",
     url: "/core/introduction",
-    img: "/Core.jpg",
+    // img: "/Core.jpg",
+    icon: DoorEnter,
   },
   {
-    title: "常见问题",
-    description: "查看使用注意点",
-    url: "/components/buttons",
-    img: "/Components.jpg",
+    title: "功能一览",
+    description: "查看功能图文说明",
+    url: "/explain/tickets",
+    icon: Coocker,
   },
   {
     title: "关于豆津账本",
     description: "查看APP相关信息、加入讨论群组",
-    url: "/patterns/introduction",
-    img: "/Patterns.jpg",
+    url: "/others/about",
+    icon: ZoomQ,
   },
 ];
 const { content = {}, canonicalURL } = Astro.props;
@@ -59,21 +64,52 @@ const { content = {}, canonicalURL } = Astro.props;
           {SITE.description}
         </p>
         <div class="mt-4 text-center">
-          <MainButton class="w-40 px-6" square client:visible>
-            下载最新版本
-            <Download slot="prefix" pack="mdi" name="account" />
-          </MainButton>
+          <a
+            href="https://gitee.com/conomi/Doujin-Ledger-Release/releases/download/v1.0.0.beta-0/%E8%B1%86%E6%B4%A5%E8%B4%A6%E6%9C%ACv1.0.0.beta-0.apk"
+            download="豆津账本latest.apk"
+          >
+            <MainButton
+              gradient="green-blue"
+              class="w-40 px-6 mr-4"
+              square
+              client:visible
+            >
+              下载最新版本
+              <Download slot="prefix" pack="mdi" name="account" />
+            </MainButton>
+          </a>
+          <a href="/others/download">
+            <MainButton
+              gradient="red-yellow"
+              class="w-40 px-6"
+              square
+              client:visible
+            >
+              其他渠道下载
+              <WorldDown slot="prefix" pack="mdi" name="account" />
+            </MainButton>
+          </a>
         </div>
       </header>
-      <nav>
-        <ul class="flex gap-4 max-w-5xl mx-auto text-left mt-12">
+      <div class="mt-4 text-center text-lg font-semibold">文档</div>
+      <nav class="bg-slate-100">
+        <ul class="flex flex-wrap gap-4 max-w-5xl mx-auto text-left">
           {
-            navItems.map(({ title, description, url, img }) => (
+            navItems.map(({ title, description, url, icon: ico }) => (
               <a
                 href={url}
-                class="flex flex-col bg-white rounded-md hover:-translate-y-1 hover:shadow-lg transition-all flex-1 items-center p-4"
+                class="m-4 w-full flex flex-col bg-white rounded-md hover:-translate-y-1 hover:shadow-lg transition-all sm:flex-1 items-center p-4 inline-block"
               >
-                <img src={img} alt={title} />
+                {img && <img src={img} alt={title} />}
+                {ico === DoorEnter && (
+                  <DoorEnter class="text-7xl inline-block m-10 text-[#3C82F6]" />
+                )}
+                {ico === Coocker && (
+                  <Coocker class="text-7xl inline-block m-10 text-[#3C82F6]" />
+                )}
+                {ico === ZoomQ && (
+                  <ZoomQ class="text-7xl inline-block m-10 text-[#3C82F6]" />
+                )}
                 <h2 class="text-lg font-medium">{title}</h2>
                 <p class="text-slate-500">{description}</p>
               </a>

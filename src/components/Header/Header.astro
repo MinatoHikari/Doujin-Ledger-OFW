@@ -1,6 +1,9 @@
 ---
 import { SITE } from "../../config";
 import SkipToContent from "./SkipToContent.astro";
+import Dropdown from "./DropdownNav.vue";
+import MenuIcon from "~icons/tabler/menu-2";
+import Pinned from "~icons/tabler/pinned";
 
 const { currentPage } = Astro.props;
 ---
@@ -14,6 +17,10 @@ const { currentPage } = Astro.props;
     class="max-w-7xl mx-auto flex justify-between items-center px-4"
   >
     <div class="flex flex-nowrap items-center">
+      <Dropdown class="mr-2" client:visible>
+        <MenuIcon slot="trigger" />
+        <Pinned slot="anchor" />
+      </Dropdown>
       <span class="h-10 w-10 inline-block mr-2">
         <img src="/appicon.png" class="rounded-lg" />
       </span>
@@ -42,6 +49,7 @@ const { currentPage } = Astro.props;
             title="Github"
             class="opacity-80 hover:opacity-100 hover:bg-slate-200 p-2 rounded-full transition-colors"
             href={"https://github.com/" + SITE.github}
+            target="_blank"
           >
             <img class="h-7" src="/github.svg" alt="github logo" />
           </a>

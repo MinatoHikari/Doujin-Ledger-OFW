@@ -1,10 +1,10 @@
 export const SITE = {
   title: "豆津账本",
-  description: "一个专为即卖会摊主而生的记账辅助工具",
+  description: "一个专为同人展摊主而生的记账辅助工具",
   defaultLanguage: "zh_CN",
-  twitter: "@jordienr",
-  github: "jordienr",
-  linkedin: "linkedinUsername",
+  // twitter: "@jordienr",
+  github: "MinatoHikari/Doujin-Ledger-Release",
+  // linkedin: "linkedinUsername",
 };
 
 export const OPEN_GRAPH = {
@@ -34,6 +34,7 @@ export const SIDEBAR = [
 
   { text: "其他", header: true },
   { text: "版本历史", link: "/others/log" },
+  { text: "下载渠道", link: "/others/download" },
   { text: "数据迁移/备份", link: "/others/backup" },
   { text: "关于豆津账本", link: "/others/about" },
 ];
