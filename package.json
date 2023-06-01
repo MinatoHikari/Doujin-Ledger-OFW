@@ -25,7 +25,6 @@
     "vue": "3.3.4"
   },
   "devDependencies": {
-    "@astrojs/image": "^0.16.9",
     "@astrojs/mdx": "^0.19.5",
     "@astrojs/preact": "^2.2.1",
     "@astrojs/react": "^2.2.1",

@@ -5,7 +5,6 @@ import AutoImport from "unplugin-auto-import/astro";
 import Icons from "unplugin-icons/vite";
 import mdx from "@astrojs/mdx";
 import vercel from "@astrojs/vercel/serverless";
-import image from "@astrojs/image";
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,9 +15,6 @@ export default defineConfig({
     // Enable Preact to support Preact JSX components.
     vue({ appEntrypoint: "/src/pages/_app" }),
     mdx(),
-    image({
-      serviceEntryPoint: "@astrojs/image/sharp",
-    }),
     tailwind({
       // config: { applyBaseStyles: false },
     }),
