@@ -1,11 +1,13 @@
 ---
-import TableOfContents from './TableOfContents.astro';
+import TableOfContents from "./TableOfContents.astro";
 const { content } = Astro.props;
-const headers = content.astro?.headers || [];
+const posts = await Astro.glob("../pages/core/*.mdx");
+const post = posts.filter((i) => i.file === content.file)[0];
+const headers = post?.getHeadings() ?? [];
 ---
 
 <nav aria-labelledby="grid-right">
-	<div class="px-8">
-		<TableOfContents headers={headers} />
-	</div>
+  <div class="px-8">
+    <TableOfContents headers={headers} />
+  </div>
 </nav>

@@ -1,52 +1,88 @@
 ---
 import { SITE } from "../config";
-const navItems = [
-	{
-		title: 'Core',
-		description: 'Base colors, typography, shadows, and more.',
-		url: '/core/introduction',
-		img: '/Core.jpg'
-	},
-	{
-		title: 'Components',
-		description: 'The building blocks for our UI.',
-		url: '/components/buttons',
-		img: '/Components.jpg'
-	},
-	{
-		title: 'Patterns',
-		description: 'Common patterns for building interfaces.',
-		url: '/patterns/introduction',
-		img: '/Patterns.jpg'
-	}
-]
+import HeadCommon from "../components/HeadCommon.astro";
+import HeadSEO from "../components/HeadSEO.astro";
+import MainButton from "../components/MainButton.vue";
+import Download from "~icons/bx/download";
 
+const navItems = [
+  {
+    title: "开始使用",
+    description: "了解APP功能、如何使用",
+    url: "/core/introduction",
+    img: "/Core.jpg",
+  },
+  {
+    title: "常见问题",
+    description: "查看使用注意点",
+    url: "/components/buttons",
+    img: "/Components.jpg",
+  },
+  {
+    title: "关于豆津账本",
+    description: "查看APP相关信息、加入讨论群组",
+    url: "/patterns/introduction",
+    img: "/Patterns.jpg",
+  },
+];
+const { content = {}, canonicalURL } = Astro.props;
 ---
 
+<!DOCTYPE html>
+<html style="height:100%" lang="en">
+  <head>
+    <HeadCommon />
+    <HeadSEO
+      content={{ ...content }}
+      canonicalURL={canonicalURL}
+      site={Astro.site}
+    />
+    <meta name="naive-ui-style" />
+  </head>
 
+  <body style="height:100%">
+    <div class="bg-slate-100 h-full text-center">
+      <header
+        class="pt-12 pb-24 px-4 bg-gradient-to-br from-slate-700 to-black"
+      >
+        <div class="flex items-center justify-center p-4">
+          <img
+            src="/appicon.png"
+            class="h-20 w-20 rounded-xl"
+            alt="Doujin-Ledger-Logo"
+          />
+        </div>
+        <h1 class="text-center text-white text-4xl font-medium drop-shadow-sm">
+          {SITE.title}
+        </h1>
+        <p class="text-center text-lg mt-4 text-slate-300">
+          {SITE.description}
+        </p>
+        <div class="mt-4 text-center">
+          <MainButton class="w-40 px-6" square client:visible>
+            下载最新版本
+            <Download slot="prefix" pack="mdi" name="account" />
+          </MainButton>
+        </div>
+      </header>
+      <nav>
+        <ul class="flex gap-4 max-w-5xl mx-auto text-left mt-12">
+          {
+            navItems.map(({ title, description, url, img }) => (
+              <a
+                href={url}
+                class="flex flex-col bg-white rounded-md hover:-translate-y-1 hover:shadow-lg transition-all flex-1 items-center p-4"
+              >
+                <img src={img} alt={title} />
+                <h2 class="text-lg font-medium">{title}</h2>
+                <p class="text-slate-500">{description}</p>
+              </a>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
 
-<div class="bg-slate-100 min-h-screen text-center">
-	<header class="pt-12 pb-24 px-4 bg-gradient-to-br from-slate-700 to-black">
-		<div class="flex items-center justify-center p-4">
-			<img src="/astro-design-system-logo.svg" alt="Astro Design System Logo">
-		</div>
-		<h1 class=" text-white text-4xl font-medium drop-shadow-sm">{SITE.title}</h1>
-		<p class="text-lg mt-4 text-slate-300">{SITE.description}</p>
-	</header>
-	<nav>
-		<ul class="flex gap-4 max-w-5xl mx-auto text-left mt-12">
-		{
-			navItems.map(({ title, description, url, img }) => (
-				<a href={url} class="flex flex-col bg-white rounded-md hover:-translate-y-1 hover:shadow-lg transition-all flex-1 items-center p-4">
-					<img src={img} alt={title}>
-					<h2 class="text-lg font-medium">{title}</h2>
-					<p class="text-slate-500">{description}</p>
-				</a>
-			))
-		}
-		</ul>
-	</nav>
-</div>
-
-<script is:inline>
-</script>
+    <script is:inline></script>
+  </body>
+</html>

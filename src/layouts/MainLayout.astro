@@ -1,45 +1,97 @@
 ---
-import HeadCommon from '../components/HeadCommon.astro';
-import HeadSEO from '../components/HeadSEO.astro';
-import Header from '../components/Header/Header.astro';
-import PageContent from '../components/PageContent.astro';
-import LeftSidebar from '../components/LeftSidebar.astro';
-import RightSidebar from '../components/RightSidebar.astro';
-import * as CONFIG from '../config';
-import '../styles/main.scss';
+import HeadCommon from "../components/HeadCommon.astro";
+import HeadSEO from "../components/HeadSEO.astro";
+import Header from "../components/Header/Header.astro";
+import PageContent from "../components/PageContent.astro";
+import LeftSidebar from "../components/LeftSidebar.astro";
+import RightSidebar from "../components/RightSidebar.astro";
+import ContentLink from "../components/ContentLink.vue";
+import * as CONFIG from "../config";
+import Left from "~icons/tabler/arrow-bar-to-left";
+import Right from "~icons/tabler/arrow-bar-to-right";
+import "../styles/main.scss";
 
-const { content = {} } = Astro.props;
+const { content = {}, frontmatter = {}, canonicalURL } = Astro.props;
 const currentPage = new URL(Astro.request.url).pathname;
+console.log(currentPage);
+const index = CONFIG.SIDEBAR.findIndex((i) => i.link === currentPage);
+console.log(index);
+let prevLink = "";
+let prevTitle = "";
+for (let i = index - 1; i > -1; i--) {
+  const link = CONFIG.SIDEBAR[i].link;
+  const text = CONFIG.SIDEBAR[i].text;
+  if (link) {
+    prevLink = link;
+    prevTitle = text;
+    break;
+  }
+}
+let nextLink = "";
+let nextTitle = "";
+for (let i = index + 1; i < CONFIG.SIDEBAR.length; i++) {
+  const link = CONFIG.SIDEBAR[i].link;
+  const text = CONFIG.SIDEBAR[i].text;
+  if (link) {
+    nextLink = link;
+    nextTitle = text;
+    break;
+  }
+}
 // const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
 ---
 
-<html dir={content.dir ?? 'ltr'} lang={content.lang ?? 'en-us'} class="initial">
-	<head>
-		<HeadCommon />
-		<HeadSEO {content} canonicalURL={Astro.canonicalURL} />
-		<title>{content.title ? `${content.title} 🚀 ${CONFIG.SITE.title}` : CONFIG.SITE.title}</title>
-	</head>
+<html dir={content.dir ?? "ltr"} lang={content.lang ?? "en-us"} class="initial">
+  <head>
+    <HeadCommon />
+    <HeadSEO
+      content={{ ...content, ...frontmatter }}
+      canonicalURL={canonicalURL}
+      site={Astro.site}
+    />
 
-	<body class="bg-slate-100">
-		<div class="sticky top-0 z-10 w-full">
-			<Header currentPage={currentPage} />
-		</div>
-		<div class="grid grid-cols-12">
-			<div class="col-span-3 sticky top-0 pt-12 h-screen flex">
-				<div class="ml-auto">
-					<LeftSidebar currentPage={currentPage} />
-				</div>
-			</div>
-			<main class="py-4 px-8 pb-32 col-span-6  overflow-auto">
-				<div>
-					<PageContent content={content}>
-						<slot />
-					</PageContent>
-				</div>
-			</main>
-			<div class="col-span-3 sticky top-0 h-screen flex">
-				<RightSidebar content={content} />
-			</div>
-		</div>
-	</body>
+    <title>
+      {
+        content.title
+          ? `${content.title} 🚀 ${CONFIG.SITE.title}`
+          : CONFIG.SITE.title
+      }
+    </title>
+  </head>
+
+  <body class="bg-slate-100">
+    <div class="sticky top-0 z-10 w-full">
+      <Header currentPage={currentPage} />
+    </div>
+    <div class="grid grid-cols-12">
+      <div
+        class="hidden sm:hidden md:block md:col-span-3 lg:col-span-3 sticky top-0 pt-12 h-screen flex overflow-y-auto overflow-x-hidden"
+      >
+        <div class="ml-auto">
+          <LeftSidebar currentPage={currentPage} />
+        </div>
+      </div>
+      <main
+        class="py-4 px-8 pb-32 col-span-12 sm:col-span-12 md:col-span-9 lg:col-span-6 overflow-auto"
+      >
+        <div class="prose lg:prose-xl">
+          <PageContent content={content}>
+            <slot />
+          </PageContent>
+        </div>
+        <div class="mt-8"></div>
+        <ContentLink next={nextLink} prev={prevLink} client:only>
+          <Left slot="leftPrefix" class="inline-block" />
+          <span slot="left">{prevTitle}</span>
+          <Right slot="rightSuffix" class="inline-block" />
+          <span slot="right">{nextTitle}</span>
+        </ContentLink>
+      </main>
+      <div
+        class="hidden sm:hidden lg:block lg:col-span-3 sticky top-0 h-screen flex"
+      >
+        <RightSidebar content={content} />
+      </div>
+    </div>
+  </body>
 </html>

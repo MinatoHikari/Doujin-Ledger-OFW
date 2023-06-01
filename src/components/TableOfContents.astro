@@ -1,12 +1,19 @@
 ---
-	const { headers } = Astro.props;
+import SlugAnchor from "./SlugAnchor.vue";
+const { headers } = Astro.props;
 ---
+
 <ul class="flex flex-col gap-4 mt-24">
-	{ headers.map(({ slug, text }) => {
-		return (
-		<li class="text-slate-400 hover:text-slate-800 hover:text-slate-900">
-			#<a href={`#${slug}`}>{text}</a>
-		</li>
-		) 
-	}) }
+  {
+    headers.map(({ slug, text }) => {
+      return (
+        <li class="text-slate-400 hover:text-slate-800 hover:text-slate-900">
+          #
+          <SlugAnchor href={`#${slug}`} client:only>
+            {text}
+          </SlugAnchor>
+        </li>
+      );
+    })
+  }
 </ul>
