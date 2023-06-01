@@ -24,8 +24,8 @@ export const SIDEBAR = [
 
   { text: "进阶", header: true },
   { text: "多人协作", link: "/advanced/cooperate" },
-  { text: "同步快照/货品", link: "/advanced/sync" },
-  { text: "使用远程数据库", link: "/advanced/remote" },
+  { text: "同步快照/货品", link: "/advanced/sync-data" },
+  { text: "使用远程数据库", link: "/advanced/remote-datebase" },
 
   { text: "页面图文说明", header: true },
   { text: "新单据", link: "/explain/tickets" },
