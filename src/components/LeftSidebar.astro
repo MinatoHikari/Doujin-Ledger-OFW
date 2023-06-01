@@ -22,9 +22,12 @@ const getLinkClasses = (link) => {
 };
 ---
 
-<aside title="Site Navigation">
+<aside class="h-full" title="Site Navigation">
   <!-- <Debug content={navigation} /> -->
-  <nav aria-labelledby="grid-left" class="md:w-48 lg:w-64 p-4 border-r">
+  <nav
+    aria-labelledby="grid-left"
+    class="md:w-48 lg:w-64 p-4 border-r h-full overflow-y-auto overflow-x-hidden"
+  >
     <ul>
       {
         SIDEBAR.map((item) =>
