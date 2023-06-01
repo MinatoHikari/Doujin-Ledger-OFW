@@ -31,6 +31,7 @@ const navItems = [
   },
 ];
 const { content = {}, canonicalURL } = Astro.props;
+// {img && <img src={img} alt={title} />}
 ---
 
 <!DOCTYPE html>
@@ -100,7 +101,6 @@ const { content = {}, canonicalURL } = Astro.props;
                 href={url}
                 class="m-4 w-full flex flex-col bg-white rounded-md hover:-translate-y-1 hover:shadow-lg transition-all sm:flex-1 items-center p-4 inline-block"
               >
-                {img && <img src={img} alt={title} />}
                 {ico === DoorEnter && (
                   <DoorEnter class="text-7xl inline-block m-10 text-[#3C82F6]" />
                 )}
