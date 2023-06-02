@@ -26,6 +26,7 @@ export const SIDEBAR = [
   { text: "多人协作", link: "/advanced/cooperate" },
   { text: "同步快照/货品", link: "/advanced/sync-data" },
   { text: "使用远程数据库", link: "/advanced/remote-database" },
+  { text: "数据迁移/备份", link: "/advanced/backup" },
 
   { text: "页面图文说明", header: true },
   { text: "新单据", link: "/explain/tickets" },
@@ -36,8 +37,8 @@ export const SIDEBAR = [
 
   { text: "其他", header: true },
   { text: "版本历史", link: "/others/log" },
+  { text: "常见问题", link: "/others/questions" },
   { text: "下载渠道", link: "/others/download" },
-  { text: "数据迁移/备份", link: "/others/backup" },
   { text: "关于豆津账本", link: "/others/about" },
 ];
 

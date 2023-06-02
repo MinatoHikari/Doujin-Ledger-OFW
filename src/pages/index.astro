@@ -4,7 +4,7 @@ import HeadCommon from "../components/HeadCommon.astro";
 import HeadSEO from "../components/HeadSEO.astro";
 import MainButton from "../components/MainButton.vue";
 import Download from "~icons/bx/download";
-import Coocker from "~icons/tabler/cooker";
+import Cup from "~icons/tabler/cup";
 import ZoomQ from "~icons/tabler/help-triangle";
 import DoorEnter from "~icons/tabler/door-enter";
 import WorldDown from "~icons/tabler/world-down";
@@ -18,16 +18,16 @@ const navItems = [
     icon: DoorEnter,
   },
   {
-    title: "功能一览",
-    description: "查看功能图文说明",
-    url: "/explain/tickets",
-    icon: Coocker,
+    title: "常见问题",
+    description: "对软件有疑问看这里",
+    url: "/others/questions",
+    icon: ZoomQ,
   },
   {
     title: "关于豆津账本",
     description: "查看APP相关信息、加入讨论群组",
     url: "/others/about",
-    icon: ZoomQ,
+    icon: Cup,
   },
 ];
 const { content = {}, canonicalURL } = Astro.props;
@@ -87,6 +87,9 @@ const { content = {}, canonicalURL } = Astro.props;
               <WorldDown slot="prefix" pack="mdi" name="account" />
             </MainButton>
           </a>
+          <div class="text-white mt-4">
+            最新版本: v{LastestRelease.version}
+          </div>
         </div>
       </header>
       <div class="mt-4 text-center text-lg font-semibold">文档</div>
@@ -101,8 +104,8 @@ const { content = {}, canonicalURL } = Astro.props;
                 {ico === DoorEnter && (
                   <DoorEnter class="text-7xl inline-block m-10 text-[#3C82F6]" />
                 )}
-                {ico === Coocker && (
-                  <Coocker class="text-7xl inline-block m-10 text-[#3C82F6]" />
+                {ico === Cup && (
+                  <Cup class="text-7xl inline-block m-10 text-[#3C82F6]" />
                 )}
                 {ico === ZoomQ && (
                   <ZoomQ class="text-7xl inline-block m-10 text-[#3C82F6]" />
