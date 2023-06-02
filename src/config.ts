@@ -25,12 +25,14 @@ export const SIDEBAR = [
   { text: "进阶", header: true },
   { text: "多人协作", link: "/advanced/cooperate" },
   { text: "同步快照/货品", link: "/advanced/sync-data" },
-  { text: "使用远程数据库", link: "/advanced/remote-datebase" },
+  { text: "使用远程数据库", link: "/advanced/remote-database" },
 
   { text: "页面图文说明", header: true },
   { text: "新单据", link: "/explain/tickets" },
   { text: "对账", link: "/explain/statistics" },
   { text: "快照", link: "/explain/snapshot" },
+  { text: "货品", link: "/explain/goods" },
+  { text: "设置", link: "/explain/settings" },
 
   { text: "其他", header: true },
   { text: "版本历史", link: "/others/log" },
