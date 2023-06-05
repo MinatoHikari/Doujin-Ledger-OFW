@@ -123,7 +123,7 @@ const { content = {}, canonicalURL } = Astro.props;
       </nav>
     </div>
 
-    <script is:inline>
+    <script lang="ts" is:inline>
       import { inject } from "@vercel/analytics";
       inject();
     </script>
