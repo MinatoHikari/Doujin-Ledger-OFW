@@ -8,7 +8,6 @@ import Cup from "~icons/tabler/cup";
 import ZoomQ from "~icons/tabler/help-triangle";
 import DoorEnter from "~icons/tabler/door-enter";
 import WorldDown from "~icons/tabler/world-down";
-import { inject } from "@vercel/analytics";
 
 const navItems = [
   {
@@ -33,7 +32,6 @@ const navItems = [
 ];
 const { content = {}, canonicalURL } = Astro.props;
 // {img && <img src={img} alt={title} />}
-inject();
 ---
 
 <!DOCTYPE html>
@@ -125,6 +123,9 @@ inject();
       </nav>
     </div>
 
-    <script is:inline></script>
+    <script is:inline>
+      import { inject } from "@vercel/analytics";
+      inject();
+    </script>
   </body>
 </html>

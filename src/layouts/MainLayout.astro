@@ -12,7 +12,6 @@ import Left from "~icons/tabler/arrow-bar-to-left";
 import Right from "~icons/tabler/arrow-bar-to-right";
 import "../styles/main.scss";
 import { normalizePath } from "vite";
-import { inject } from "@vercel/analytics";
 
 const { content = {}, frontmatter = {}, canonicalURL } = Astro.props;
 const currentPage = new URL(Astro.request.url).pathname;
@@ -41,7 +40,6 @@ for (let i = index + 1; i < CONFIG.SIDEBAR.length; i++) {
     break;
   }
 }
-inject();
 // const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
 ---
 
@@ -97,5 +95,10 @@ inject();
         <RightSidebar content={content} />
       </div>
     </div>
+
+    <script is:inline>
+      import { inject } from "@vercel/analytics";
+      inject();
+    </script>
   </body>
 </html>
