@@ -123,9 +123,6 @@ const { content = {}, canonicalURL } = Astro.props;
       </nav>
     </div>
 
-    <script lang="ts" is:inline>
-      import { inject } from "@vercel/analytics";
-      inject();
-    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
   </body>
 </html>
