@@ -14,6 +14,7 @@
     "@docsearch/css": "^3.4.0",
     "@docsearch/react": "^3.4.0",
     "@types/react": "^18.2.7",
+    "@vercel/analytics": "^1.0.1",
     "@vueuse/core": "^10.1.2",
     "flowbite": "^1.6.5",
     "flowbite-vue": "^0.0.10",
