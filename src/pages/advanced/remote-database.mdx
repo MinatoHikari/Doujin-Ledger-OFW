@@ -19,7 +19,7 @@ pnpm 7以上
 2. 创建开发环境数据库 `pnpx prisma migrate dev --name [自己取个名字]` 或者创建生产环境数据库 (dev 改成 deploy)
 3. 开发环境运行项目 `pnpm run start`
    或先 build `pnpm run build` 再生产模式运行 `pnpm run start:prod`
-4. 如果没有域名，直接在豆津账本客户端内把 api 地址设置为 `http://[你的服务器ip]:[端口(默认3000)]/`
+4. 在豆津账本客户端内把 api 地址设置为 `[http或https]://[你的服务器ip或域名]:[端口(默认3000)]/` (如果有域名建议使用 https，后续验证机制需要开启 https)
 5. 如果使用 nginx 或其他服务反向代理 nestjs 服务，设置一个反向代理规则，target 指向 `https://localhost:3000/`
 
 - 服务默认的运行端口是 3000 可自行切出一个本地分支修改
