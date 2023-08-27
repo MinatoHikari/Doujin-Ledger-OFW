@@ -43,6 +43,6 @@ export const SIDEBAR = [
 ];
 
 export const LastestRelease = {
-  url: "https://gitee.com/conomi/Doujin-Ledger-Release/releases/download/v1.4.3/doujin-ledger-v1.4.3.apk",
-  version: "1.4.3",
+  url: "https://gitee.com/conomi/Doujin-Ledger-Release/releases/download/v1.4.4/doujin-ledger-v1.4.4.apk",
+  version: "1.4.4",
 };
