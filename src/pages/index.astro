@@ -8,8 +8,6 @@ import Cup from "~icons/tabler/cup";
 import ZoomQ from "~icons/tabler/help-triangle";
 import DoorEnter from "~icons/tabler/door-enter";
 import WorldDown from "~icons/tabler/world-down";
-import Image from "astro/components/Image.astro";
-import Logo from "../assets/appicon.png"
 
 const navItems = [
   {
@@ -75,8 +73,8 @@ const { content = {}, canonicalURL } = Astro.props;
         class="pt-12 pb-24 px-4 bg-gradient-to-br from-slate-700 to-black"
       >
         <div class="flex items-center justify-center p-4">
-          <Image
-            src={Logo}
+          <img
+            src="/appicon.png"
             class="h-20 w-20 rounded-xl"
             alt="Doujin-Ledger-Logo"
           />

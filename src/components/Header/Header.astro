@@ -5,8 +5,6 @@ import Dropdown from "./DropdownNav.vue";
 import MenuIcon from "~icons/tabler/menu-2";
 import Pinned from "~icons/tabler/pinned";
 import { Image } from "astro:assets";
-import Logo from "../../assets/appicon.png"
-import Github from "../../assets/github.svg"
 
 const { currentPage } = Astro.props;
 ---
@@ -25,7 +23,7 @@ const { currentPage } = Astro.props;
         <Pinned slot="anchor" />
       </Dropdown>
       <span class="h-10 w-10 inline-block mr-2">
-        <Image src={Logo} alt="appicon" class="rounded-lg" />
+        <img src="appicon.png" alt="appicon" class="rounded-lg" />
       </span>
       <a class="text-lg font-medium" href="/">
         <h1>
@@ -54,7 +52,7 @@ const { currentPage } = Astro.props;
             href={"https://github.com/" + SITE.github}
             target="_blank"
           >
-            <Image class="h-7" src={Github} alt="github logo" />
+            <img class="h-7" src="/github.svg" alt="github logo" />
           </a>
         )
       }
