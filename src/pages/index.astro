@@ -8,6 +8,8 @@ import Cup from "~icons/tabler/cup";
 import ZoomQ from "~icons/tabler/help-triangle";
 import DoorEnter from "~icons/tabler/door-enter";
 import WorldDown from "~icons/tabler/world-down";
+import Image from "astro/components/Image.astro";
+import Logo from "../assets/appicon.png"
 
 const navItems = [
   {
@@ -28,6 +30,27 @@ const navItems = [
     description: "查看APP相关信息、加入讨论群组",
     url: "/others/about",
     icon: Cup,
+  },
+];
+
+const friendshipLink = [
+  {
+    title: "CnGal.org",
+    description: "中文Galgame资料站",
+    url: "https://www.cngal.org/",
+    img: "/cngal.org.logo.png",
+  },
+  {
+    title: "",
+    description: "",
+    url: "",
+    img: "",
+  },
+  {
+    title: "",
+    description: "",
+    url: "",
+    img: "",
   },
 ];
 const { content = {}, canonicalURL } = Astro.props;
@@ -52,8 +75,8 @@ const { content = {}, canonicalURL } = Astro.props;
         class="pt-12 pb-24 px-4 bg-gradient-to-br from-slate-700 to-black"
       >
         <div class="flex items-center justify-center p-4">
-          <img
-            src="/appicon.png"
+          <Image
+            src={Logo}
             class="h-20 w-20 rounded-xl"
             alt="Doujin-Ledger-Logo"
           />
@@ -118,6 +141,32 @@ const { content = {}, canonicalURL } = Astro.props;
                 <p class="text-slate-500">{description}</p>
               </a>
             ))
+          }
+        </ul>
+      </nav>
+      <div class="pt-4 text-center text-lg font-semibold bg-slate-100">友情链接</div>
+      <nav class="bg-slate-100">
+        <ul class="flex flex-wrap gap-4 max-w-5xl mx-auto text-left">
+          {
+            friendshipLink.map(({ title, description, url, img }) => {
+              if (url) {
+                return (
+                  <a
+                    href={url}
+                    target="_blank"
+                    class="m-4 w-full flex flex-col bg-white rounded-md hover:-translate-y-1 hover:shadow-lg transition-all sm:flex-1 items-center p-4 inline-block"
+                  >
+                    <img src={img} class="text-7xl inline-block mb-2 text-[#3C82F6] w-16" alt="">
+                    <h2 class="text-lg font-medium">{title}</h2>
+                    <p class="text-slate-500">{description}</p>
+                  </a>
+                )
+              } else {
+                return <div
+                  class="w-full flex flex-col bg-transparent sm:flex-1 sm:hidden md:inline-block lg:inline-block">
+              </div>
+              }
+            })
           }
         </ul>
       </nav>
