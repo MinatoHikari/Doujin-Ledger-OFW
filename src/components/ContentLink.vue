@@ -1,7 +1,7 @@
 <template>
   <div class="w-full grid grid-cols-2 gap-4">
     <div class="col-span-1">
-      <Button
+      <FwbButton
         v-if="props.prev"
         @click="nav(props.prev)"
         class="w-full text-left"
@@ -11,10 +11,10 @@
         <template #prefix>
           <slot name="leftPrefix"></slot>
         </template>
-      </Button>
+      </FwbButton>
     </div>
     <div class="col-span-1">
-      <Button
+      <FwbButton
         v-if="props.next"
         @click="nav(props.next)"
         class="w-full text-right"
@@ -27,13 +27,13 @@
         <template #suffix>
           <slot name="rightSuffix"></slot>
         </template>
-      </Button>
+      </FwbButton>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { Button } from "flowbite-vue";
+import { FwbButton } from "flowbite-vue";
 
 const props = defineProps<{
   prev: string;

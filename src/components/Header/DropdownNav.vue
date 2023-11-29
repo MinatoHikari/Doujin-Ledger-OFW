@@ -1,8 +1,8 @@
 <template>
-  <dropdown>
+  <FwbDropdown>
     <template #trigger> <slot name="trigger" /> </template>
-    <list-group class="h-[500px]" style="overflow: auto">
-      <list-group-item
+    <FwbListGroup class="h-[500px]" style="overflow: auto">
+      <FwbListGroupItem
         v-for="(i, index) in SIDEBAR"
         :key="index"
         :class="i.link ? '' : 'text-slate-400'"
@@ -12,13 +12,13 @@
           <slot name="anchor" />
         </span>
         {{ i.text }}
-      </list-group-item>
-    </list-group>
-  </dropdown>
+      </FwbListGroupItem>
+    </FwbListGroup>
+  </FwbDropdown>
 </template>
 
 <script setup lang="ts">
-import { Dropdown, ListGroup, ListGroupItem, Button } from "flowbite-vue";
+import { FwbDropdown, FwbListGroup, FwbListGroupItem } from "flowbite-vue";
 import { SIDEBAR } from "../../config";
 
 const onClick = (link?: string, e: MouseEvent) => {

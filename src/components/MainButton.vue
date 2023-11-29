@@ -1,14 +1,14 @@
 <template>
-  <Button>
+  <FwbButton>
     <slot />
     <template #prefix>
       <slot name="prefix" />
     </template>
-  </Button>
+  </FwbButton>
 </template>
 
 <script setup lang="ts">
-import { Button } from "flowbite-vue";
+import { FwbButton } from "flowbite-vue";
 </script>
 
 <style scoped></style>
