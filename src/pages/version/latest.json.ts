@@ -1,4 +1,4 @@
-import { LastestRelease } from "src/config";
+import { LastestRelease } from "../../config";
 
 export async function get({ params, request }) {
   return {
