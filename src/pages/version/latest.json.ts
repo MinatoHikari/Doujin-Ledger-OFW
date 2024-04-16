@@ -1,10 +1,12 @@
 import { LastestRelease } from "../../config";
 
-export async function get({ params, request }) {
-  return {
-    body: JSON.stringify({
+// endpoint https://docs.astro.build/en/guides/endpoints/
+
+export async function GET({ params, request }) {
+  return new Response(
+    JSON.stringify({
       version: LastestRelease.version,
       url: LastestRelease.url,
-    }),
-  };
+    })
+  );
 }
