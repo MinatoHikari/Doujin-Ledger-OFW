@@ -10,8 +10,8 @@ import * as CONFIG from "../config";
 import { formatUrl } from "../utils/tools";
 import Left from "~icons/tabler/arrow-bar-to-left";
 import Right from "~icons/tabler/arrow-bar-to-right";
+import "../styles/global.css";
 import "../styles/main.scss";
-import { normalizePath } from "vite";
 
 const { content = {}, frontmatter = {}, canonicalURL } = Astro.props;
 const currentPage = new URL(Astro.request.url).pathname;

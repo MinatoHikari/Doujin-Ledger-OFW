@@ -1,4 +1,5 @@
 ---
+import "../styles/global.css";
 import { SITE, LastestRelease } from "../config";
 import HeadCommon from "../components/HeadCommon.astro";
 import HeadSEO from "../components/HeadSEO.astro";
@@ -8,6 +9,7 @@ import Cup from "~icons/tabler/cup";
 import ZoomQ from "~icons/tabler/help-triangle";
 import DoorEnter from "~icons/tabler/door-enter";
 import WorldDown from "~icons/tabler/world-down";
+import Charge from "~icons/tabler/battery-vertical-charging";
 
 const navItems = [
   {
@@ -52,10 +54,11 @@ const friendshipLink = [
   },
 ];
 const { content = {}, canonicalURL } = Astro.props;
+
 // {img && <img src={img} alt={title} />}
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html style="height:100%" lang="en">
   <head>
     <HeadCommon />
@@ -92,10 +95,9 @@ const { content = {}, canonicalURL } = Astro.props;
             download="豆津账本latest.apk"
           >
             <MainButton
-              gradient="green-blue"
-              class="w-40 px-6 md:mr-4"
-              square
-              client:visible
+              variant="primary"
+              class="w-40 px-6 md:mr-4 flex-nowrap flex items-center"
+              client:load
             >
               下载最新版本
               <Download slot="prefix" pack="mdi" name="account" />
@@ -103,10 +105,9 @@ const { content = {}, canonicalURL } = Astro.props;
           </a>
           <a class="block md:inline-block" href="/others/download">
             <MainButton
-              gradient="red-yellow"
-              class="w-40 px-6 mt-4 md:mt-0"
-              square
-              client:visible
+              variant="info"
+              class="w-40 px-6 mt-4 md:mt-0 flex-nowrap flex items-center"
+              client:load
             >
               其他渠道下载
               <WorldDown slot="prefix" pack="mdi" name="account" />
@@ -115,6 +116,20 @@ const { content = {}, canonicalURL } = Astro.props;
           <div class="text-white mt-4">
             最新版本: v{LastestRelease.version}
           </div>
+          <a
+            class="block md:inline-block"
+            target="_blank"
+            href="https://afdian.com/a/doujin-ledger"
+          >
+            <MainButton
+              variant="secondary"
+              class="w-40 px-6 mt-4 flex-nowrap flex"
+              client:load
+            >
+              支持作者
+              <Charge slot="prefix" pack="mdi" name="account" />
+            </MainButton>
+          </a>
         </div>
       </header>
       <div class="mt-4 text-center text-lg font-semibold">文档</div>
@@ -124,25 +139,29 @@ const { content = {}, canonicalURL } = Astro.props;
             navItems.map(({ title, description, url, icon: ico }) => (
               <a
                 href={url}
-                class="m-4 w-full flex flex-col bg-white rounded-md hover:-translate-y-1 hover:shadow-lg transition-all sm:flex-1 items-center p-4 inline-block"
+                class="m-4 w-full bg-white rounded-md hover:-translate-y-1 hover:shadow-lg transition-all sm:flex-1 items-center p-4 inline-block"
               >
-                {ico === DoorEnter && (
-                  <DoorEnter class="text-7xl inline-block m-10 text-[#3C82F6]" />
-                )}
-                {ico === Cup && (
-                  <Cup class="text-7xl inline-block m-10 text-[#3C82F6]" />
-                )}
-                {ico === ZoomQ && (
-                  <ZoomQ class="text-7xl inline-block m-10 text-[#3C82F6]" />
-                )}
-                <h2 class="text-lg font-medium">{title}</h2>
-                <p class="text-slate-500">{description}</p>
+                <span class="flex flex-col items-center justify-center">
+                  {ico === DoorEnter && (
+                    <DoorEnter class="text-7xl inline-block m-10 text-[#3C82F6]" />
+                  )}
+                  {ico === Cup && (
+                    <Cup class="text-7xl inline-block m-10 text-[#3C82F6]" />
+                  )}
+                  {ico === ZoomQ && (
+                    <ZoomQ class="text-7xl inline-block m-10 text-[#3C82F6]" />
+                  )}
+                  <h2 class="text-lg font-medium">{title}</h2>
+                  <p class="text-slate-500">{description}</p>
+                </span>
               </a>
             ))
           }
         </ul>
       </nav>
-      <div class="pt-4 text-center text-lg font-semibold bg-slate-100">友情链接</div>
+      <div class="pt-4 text-center text-lg font-semibold bg-slate-100">
+        友情链接
+      </div>
       <nav class="bg-slate-100">
         <ul class="flex flex-wrap gap-4 max-w-5xl mx-auto text-left">
           {
@@ -154,15 +173,21 @@ const { content = {}, canonicalURL } = Astro.props;
                     target="_blank"
                     class="m-4 w-full flex flex-col bg-white rounded-md hover:-translate-y-1 hover:shadow-lg transition-all sm:flex-1 items-center p-4 inline-block"
                   >
-                    <img src={img} class="text-7xl inline-block mb-2 text-[#3C82F6] w-16" alt="">
-                    <h2 class="text-lg font-medium">{title}</h2>
-                    <p class="text-slate-500">{description}</p>
+                    <span class="flex flex-col items-center justify-center">
+                      <img
+                        src={img}
+                        class="text-7xl inline-block mb-2 text-[#3C82F6] w-16"
+                        alt=""
+                      />
+                      <h2 class="text-lg font-medium">{title}</h2>
+                      <p class="text-slate-500">{description}</p>
+                    </span>
                   </a>
-                )
+                );
               } else {
-                return <div
-                  class="w-full flex flex-col bg-transparent sm:flex-1 sm:hidden md:inline-block lg:inline-block">
-              </div>
+                return (
+                  <div class="w-full flex flex-col bg-transparent sm:flex-1 sm:hidden md:inline-block lg:inline-block" />
+                );
               }
             })
           }

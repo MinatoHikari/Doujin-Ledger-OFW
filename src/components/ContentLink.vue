@@ -1,24 +1,24 @@
 <template>
   <div class="w-full grid grid-cols-2 gap-4">
     <div class="col-span-1">
-      <FwbButton
+      <MainButton
         v-if="props.prev"
         @click="nav(props.prev)"
-        class="w-full text-left"
-        gradient="cyan-blue"
+        class="w-full text-left flex flex-nowrap"
+        variant="primary"
       >
         <slot name="left" />
         <template #prefix>
           <slot name="leftPrefix"></slot>
         </template>
-      </FwbButton>
+      </MainButton>
     </div>
     <div class="col-span-1">
-      <FwbButton
+      <MainButton
         v-if="props.next"
         @click="nav(props.next)"
-        class="w-full text-right"
-        gradient="cyan-blue"
+        class="w-full text-right flex flex-nowrap"
+        variant="primary"
       >
         <slot name="right" />
         <template #prefix>
@@ -27,13 +27,13 @@
         <template #suffix>
           <slot name="rightSuffix"></slot>
         </template>
-      </FwbButton>
+      </MainButton>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { FwbButton } from "flowbite-vue";
+import MainButton from './MainButton.vue';
 
 const props = defineProps<{
   prev: string;

@@ -1,10 +1,10 @@
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
 import vue from "@astrojs/vue";
 import AutoImport from "unplugin-auto-import/astro";
 import Icons from "unplugin-icons/vite";
 import mdx from "@astrojs/mdx";
-import vercel from "@astrojs/vercel/serverless";
+
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,9 +15,6 @@ export default defineConfig({
     // Enable Preact to support Preact JSX components.
     vue({ appEntrypoint: "/src/pages/_app" }),
     mdx(),
-    tailwind({
-      // config: { applyBaseStyles: false },
-    }),
     AutoImport({
       imports: [
         "vue",
@@ -33,10 +30,8 @@ export default defineConfig({
     }),
   ],
   vite: {
-    plugins: [
-      Icons({
-        compiler: "astro",
-      }),
-    ],
+    plugins: [Icons({
+      compiler: "astro",
+    }), tailwindcss()],
   },
 });

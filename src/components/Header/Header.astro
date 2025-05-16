@@ -18,7 +18,7 @@ const { currentPage } = Astro.props;
     class="max-w-7xl mx-auto flex justify-between items-center px-4"
   >
     <div class="flex flex-nowrap items-center">
-      <Dropdown class="mr-2 md:hidden" client:visible>
+      <Dropdown class="mr-2 md:hidden" client:only="vue" offsetSkidding={70}>
         <MenuIcon slot="trigger" />
         <Pinned slot="anchor" />
       </Dropdown>
