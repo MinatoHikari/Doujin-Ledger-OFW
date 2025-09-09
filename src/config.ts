@@ -43,6 +43,6 @@ export const SIDEBAR = [
 ];
 
 export const LastestRelease = {
-  url: "https://alist.ztzl.moe/d/tianyi/doujin-ledger-2.7.0.apk?sign=4-9LcliHZ42jaO75E41omNaAN9SWKN2fYa6cmjSbl-o=:0",
-  version: "2.7.0",
+  url: "https://alist.ztzl.moe/d/tianyi/doujin-ledger-2.8.0.apk?sign=nRUjDL9WPMapGralUOTm0MEa0qhB5B2WvJXiza18pl0=:0",
+  version: "2.8.0",
 };
