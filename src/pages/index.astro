@@ -10,6 +10,18 @@ import ZoomQ from "~icons/tabler/help-triangle";
 import DoorEnter from "~icons/tabler/door-enter";
 import WorldDown from "~icons/tabler/world-down";
 import Charge from "~icons/tabler/battery-vertical-charging";
+import QRCode from "qrcode";
+
+// 生成二维码 SVG
+const qrCodeSvg = await QRCode.toString(LastestRelease.url, {
+  type: "svg",
+  width: 200,
+  margin: 2,
+  color: {
+    dark: "#FFFFFF",
+    light: "#00000000",
+  },
+});
 
 const navItems = [
   {
@@ -115,6 +127,13 @@ const { content = {}, canonicalURL } = Astro.props;
           </a>
           <div class="text-white mt-4">
             最新版本: v{LastestRelease.version}
+          </div>
+          <div class="mt-4 flex flex-col items-center">
+            <div class="text-white text-sm mb-2">扫码下载</div>
+            <div
+              class="bg-white p-2 rounded-lg inline-block"
+              set:html={qrCodeSvg}
+            />
           </div>
           <a
             class="block md:inline-block"
