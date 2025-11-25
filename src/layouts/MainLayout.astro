@@ -43,7 +43,7 @@ for (let i = index + 1; i < CONFIG.SIDEBAR.length; i++) {
 // const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
 ---
 
-<html dir={content.dir ?? "ltr"} lang={content.lang ?? "en-us"} class="initial">
+<html dir={content.dir ?? "ltr"} lang={content.lang ?? "zh-CN"} class="initial">
   <head>
     <HeadCommon />
     <HeadSEO
@@ -55,7 +55,7 @@ for (let i = index + 1; i < CONFIG.SIDEBAR.length; i++) {
     <title>
       {
         content.title
-          ? `${content.title} 🚀 ${CONFIG.SITE.title}`
+          ? `${content.title} - ${CONFIG.SITE.title}`
           : CONFIG.SITE.title
       }
     </title>

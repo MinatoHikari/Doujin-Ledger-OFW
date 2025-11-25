@@ -3,6 +3,7 @@ import vue from "@astrojs/vue";
 import AutoImport from "unplugin-auto-import/astro";
 import Icons from "unplugin-icons/vite";
 import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
 
 import tailwindcss from "@tailwindcss/vite";
 
@@ -10,11 +11,12 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   // output: "server",
   // adapter: vercel(),
-  site: "https://doujin.ztzl.moe/",
+  site: "https://www.doujin-ledger.org/",
   integrations: [
     // Enable Preact to support Preact JSX components.
     vue({ appEntrypoint: "/src/pages/_app" }),
     mdx(),
+    sitemap(),
     AutoImport({
       imports: [
         "vue",
