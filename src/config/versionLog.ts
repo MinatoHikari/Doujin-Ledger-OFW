@@ -6,6 +6,11 @@ export interface VersionLog {
 
 export const versionLogs: VersionLog[] = [
   {
+    version: "2.13.0",
+    date: "2025/11/25",
+    changes: ["修复更新版本报未知错误", "增加版本更新内容"],
+  },
+  {
     version: "2.12.2",
     date: "2025/11/24",
     changes: ["修复可能存在的设置项变更导致的闪退问题"],
@@ -84,10 +89,7 @@ export const versionLogs: VersionLog[] = [
   {
     version: "2.6.0",
     date: "2025/08/18",
-    changes: [
-      "支持蓝牙同步商品（支持同步图片）",
-      "增加同步商品进度条",
-    ],
+    changes: ["支持蓝牙同步商品（支持同步图片）", "增加同步商品进度条"],
   },
   {
     version: "2.5.0",
@@ -157,19 +159,12 @@ export const versionLogs: VersionLog[] = [
   {
     version: "1.4.3",
     date: "2023/8/25",
-    changes: [
-      "升级 kotlin 至1.9",
-      "重构整体布局",
-      "禁用暗黑模式",
-    ],
+    changes: ["升级 kotlin 至1.9", "重构整体布局", "禁用暗黑模式"],
   },
   {
     version: "1.4.2",
     date: "2023/8/21",
-    changes: [
-      "支持导出 scv 格式的账单列表、商品列表",
-      "导入商品支持备注",
-    ],
+    changes: ["支持导出 scv 格式的账单列表、商品列表", "导入商品支持备注"],
   },
   {
     version: "1.4.1",
@@ -223,4 +218,3 @@ export const versionLogs: VersionLog[] = [
 export function getVersionLog(version: string): VersionLog | undefined {
   return versionLogs.find((log) => log.version === version);
 }
-
