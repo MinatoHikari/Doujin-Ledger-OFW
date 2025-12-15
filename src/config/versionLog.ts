@@ -6,6 +6,11 @@ export interface VersionLog {
 
 export const versionLogs: VersionLog[] = [
   {
+    version: "2.14.0",
+    date: "2025/12/15",
+    changes: ["小票打印支持在最后追加一次单号"],
+  },
+  {
     version: "2.13.0",
     date: "2025/11/25",
     changes: ["修复更新版本报未知错误", "增加版本更新内容"],
