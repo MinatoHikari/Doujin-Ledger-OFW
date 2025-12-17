@@ -6,6 +6,11 @@ export interface VersionLog {
 
 export const versionLogs: VersionLog[] = [
   {
+    version: "2.15.0",
+    date: "2025/12/17",
+    changes: ["支持连续扫码入单功能，可以修改扫码间隔"],
+  },
+  {
     version: "2.14.0",
     date: "2025/12/15",
     changes: ["小票打印支持在最后追加一次单号"],
