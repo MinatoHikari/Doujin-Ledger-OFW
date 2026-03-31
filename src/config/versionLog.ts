@@ -6,6 +6,11 @@ export interface VersionLog {
 
 export const versionLogs: VersionLog[] = [
   {
+    version: "2.16.0",
+    date: "2026/03/31",
+    changes: ["商品列表支持拖拽排序(勾选模式下)","调整商品列表页面右上角按钮布局"],
+  },
+  {
     version: "2.15.0",
     date: "2025/12/17",
     changes: ["支持连续扫码入单功能，可以修改扫码间隔"],
