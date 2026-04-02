@@ -6,6 +6,11 @@ export interface VersionLog {
 
 export const versionLogs: VersionLog[] = [
   {
+    version: "2.17.0",
+    date: "2026/04/02",
+    changes: ["满赠支持限定范围和多选","优化部分布局"],
+  },
+  {
     version: "2.16.0",
     date: "2026/03/31",
     changes: ["商品列表支持拖拽排序(勾选模式下)","调整商品列表页面右上角按钮布局"],
