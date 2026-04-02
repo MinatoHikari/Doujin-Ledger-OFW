@@ -184,7 +184,7 @@ export const versionLogs: VersionLog[] = [
   {
     version: "1.4.2",
     date: "2023/8/21",
-    changes: ["支持导出 scv 格式的账单列表、商品列表", "导入商品支持备注"],
+    changes: ["支持导出 csv 格式的账单列表、商品列表", "导入商品支持备注"],
   },
   {
     version: "1.4.1",
