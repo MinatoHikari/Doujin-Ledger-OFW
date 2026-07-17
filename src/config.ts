@@ -43,6 +43,6 @@ export const SIDEBAR = [
 ];
 
 export const LastestRelease = {
-  url: "https://openlist.ztzl.moe/d/lanzou/%E8%B1%86%E6%B4%A5%E8%B4%A6%E6%9C%AC/doujin-ledger-3.0.0.apk?sign=BYfRfVzS2ESGaKv1Y3l3kSM_rRmL0pAw1ZErpWrttcM=:0",
-  version: "3.0.0",
+  url: "https://openlist.ztzl.moe/d/lanzou/%E8%B1%86%E6%B4%A5%E8%B4%A6%E6%9C%AC/doujin-ledger-3.1.0.apk?sign=PR0aS1UiiQ6grwbmBP8z2AHrPNE6KXdUfy647-Ao_SU=:0",
+  version: "3.1.0",
 };

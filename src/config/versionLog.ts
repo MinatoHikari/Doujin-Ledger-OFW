@@ -6,6 +6,14 @@ export interface VersionLog {
 
 export const versionLogs: VersionLog[] = [
   {
+    version: "3.1.0",
+    date: "2026/07/17",
+    changes: [
+      "修复打印中文不显示",
+      "打印机可以自行设置编码（选择或手动编辑）",
+    ],
+  },
+  {
     version: "3.0.0",
     date: "2026/05/26",
     changes: [
