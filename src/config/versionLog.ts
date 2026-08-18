@@ -6,6 +6,13 @@ export interface VersionLog {
 
 export const versionLogs: VersionLog[] = [
   {
+    version: "3.2.1",
+    date: "2026/08/18",
+    changes: [
+      "支持德佟系列蓝牙打印机",
+    ],
+  },
+  {
     version: "3.1.0",
     date: "2026/07/17",
     changes: [
