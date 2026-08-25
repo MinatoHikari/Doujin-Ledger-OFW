@@ -6,6 +6,13 @@ export interface VersionLog {
 
 export const versionLogs: VersionLog[] = [
   {
+    version: "3.2.2",
+    date: "2026/08/25",
+    changes: [
+      "修复订单页面点击空白处会跳出键盘",
+    ],
+  },
+  {
     version: "3.2.1",
     date: "2026/08/18",
     changes: [
