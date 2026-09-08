@@ -1,0 +1,7 @@
+# Expose Astro dependencies for pnpm users
+shamefullyHoist: true
+allowBuilds:
+  "@parcel/watcher": true
+  esbuild: true
+overrides:
+  "pkg-types@^2": "2.3.2"
