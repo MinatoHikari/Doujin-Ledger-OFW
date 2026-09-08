@@ -1,6 +1,7 @@
 ---
 import { SITE, OPEN_GRAPH, SIDEBAR } from "../config";
 import { formatUrl } from "../utils/tools";
+import { getPageMeta } from "../utils/seo";
 
 export interface Props {
   content: any;
@@ -9,23 +10,30 @@ export interface Props {
 }
 const { content = {}, canonicalURL } = Astro.props;
 
-// 优化标题格式，移除emoji，使用更SEO友好的格式
-const formattedContentTitle = content.title
-  ? `${content.title} - ${SITE.title}`
-  : SITE.title;
+const effectiveCanonicalURL = canonicalURL || Astro.url;
+const currentUrl =
+  typeof effectiveCanonicalURL === "string"
+    ? new URL(effectiveCanonicalURL)
+    : effectiveCanonicalURL;
+const currentPath = formatUrl(currentUrl.pathname || "/") || "/";
+const siteUrl = Astro.site?.href || currentUrl.origin;
+const canonicalHref =
+  typeof effectiveCanonicalURL === "string"
+    ? effectiveCanonicalURL
+    : effectiveCanonicalURL.toString();
+
+const { pageTitle, documentTitle, description, isHome } = getPageMeta(
+  currentPath,
+  content
+);
 
 const imageSrc = content?.image?.src ?? OPEN_GRAPH.image.src;
-const canonicalImageSrc = new URL(imageSrc, Astro.site);
+const canonicalImageSrc = new URL(imageSrc, Astro.site).toString();
 const imageAlt = content?.image?.alt ?? OPEN_GRAPH.image.alt;
+const imageWidth = content?.image?.width ?? OPEN_GRAPH.image.width;
+const imageHeight = content?.image?.height ?? OPEN_GRAPH.image.height;
+const imageType = content?.image?.type ?? OPEN_GRAPH.image.type;
 
-// 构建面包屑导航
-// 确保 canonicalURL 有效，如果不存在则使用当前请求的 URL
-const effectiveCanonicalURL = canonicalURL || Astro.url;
-const currentUrl = typeof effectiveCanonicalURL === "string" 
-  ? new URL(effectiveCanonicalURL) 
-  : effectiveCanonicalURL;
-const currentPath = formatUrl(currentUrl.pathname || "/");
-const siteUrl = Astro.site?.href || currentUrl.origin;
 let breadcrumbItems = [
   {
     "@type": "ListItem",
@@ -35,15 +43,13 @@ let breadcrumbItems = [
   },
 ];
 
-// 从SIDEBAR中查找当前页面并构建面包屑
-if (currentPath !== "/") {
+if (!isHome) {
   const currentIndex = SIDEBAR.findIndex(
     (item) => item.link && formatUrl(item.link) === currentPath
   );
-  
+
   if (currentIndex !== -1) {
     const currentItem = SIDEBAR[currentIndex];
-    // 查找父级分类（header项）
     for (let i = currentIndex; i >= 0; i--) {
       if (SIDEBAR[i].header) {
         breadcrumbItems.push({
@@ -55,13 +61,12 @@ if (currentPath !== "/") {
         break;
       }
     }
-    
-    // 添加当前页面
+
     breadcrumbItems.push({
       "@type": "ListItem",
       position: breadcrumbItems.length + 1,
       name: currentItem.text,
-      item: typeof effectiveCanonicalURL === "string" ? effectiveCanonicalURL : effectiveCanonicalURL.toString(),
+      item: canonicalHref,
     });
   }
 }
@@ -72,64 +77,62 @@ const breadcrumbList = {
   itemListElement: breadcrumbItems,
 };
 
-// WebSite结构化数据
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: SITE.title,
   description: SITE.description,
-  url: Astro.site?.href || (typeof effectiveCanonicalURL === "string" ? effectiveCanonicalURL : effectiveCanonicalURL.toString()),
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${Astro.site?.href || ""}/search?q={search_term_string}`,
-    },
-    "query-input": "required name=search_term_string",
-  },
+  url: siteUrl,
 };
 
-// Article结构化数据（用于文档页面）
-const isArticle = content.title && currentPath !== "/";
-const articleSchema = isArticle
+const softwareSchema = isHome
   ? {
       "@context": "https://schema.org",
-      "@type": "Article",
-      headline: content.title,
-      description: content.description || SITE.description,
-      image: canonicalImageSrc.toString(),
-      datePublished: content.publishedTime || new Date().toISOString(),
-      dateModified: content.modifiedTime || new Date().toISOString(),
-      author: {
-        "@type": "Organization",
-        name: SITE.title,
+      "@type": "SoftwareApplication",
+      name: SITE.title,
+      description: SITE.description,
+      applicationCategory: "FinanceApplication",
+      operatingSystem: "Android",
+      url: siteUrl,
+      image: canonicalImageSrc,
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "CNY",
       },
-      publisher: {
-        "@type": "Organization",
+    }
+  : null;
+
+const webPageSchema = !isHome
+  ? {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: pageTitle,
+      description,
+      url: canonicalHref,
+      isPartOf: {
+        "@type": "WebSite",
         name: SITE.title,
-        logo: {
-          "@type": "ImageObject",
-          url: canonicalImageSrc.toString(),
-        },
-      },
-      mainEntityOfPage: {
-        "@type": "WebPage",
-        "@id": typeof effectiveCanonicalURL === "string" ? effectiveCanonicalURL : effectiveCanonicalURL.toString(),
+        url: siteUrl,
       },
     }
   : null;
 ---
 
+<title>{documentTitle}</title>
+
 <!-- Page Metadata -->
-<link rel="canonical" href={effectiveCanonicalURL} />
+<link rel="canonical" href={canonicalHref} />
 
 <!-- Basic Meta Tags -->
-<meta
-  name="description"
-  content={content.description ? content.description : SITE.description}
-/>
+<meta name="description" content={description} />
 <meta name="author" content={SITE.title} />
 <meta name="theme-color" content="#1e293b" />
+
+<!-- WeChat / QQ share card helpers -->
+<meta itemprop="name" content={documentTitle} />
+<meta itemprop="description" content={description} />
+<meta itemprop="image" content={canonicalImageSrc} />
 
 <!-- Apple Mobile Web App -->
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -137,42 +140,32 @@ const articleSchema = isArticle
 <meta name="apple-mobile-web-app-title" content={SITE.title} />
 
 <!-- OpenGraph Tags -->
-<meta property="og:title" content={formattedContentTitle} />
-<meta property="og:type" content={isArticle ? "article" : "website"} />
-<meta property="og:url" content={effectiveCanonicalURL} />
+<meta property="og:title" content={documentTitle} />
+<meta property="og:type" content={isHome ? "website" : "article"} />
+<meta property="og:url" content={canonicalHref} />
 <meta property="og:locale" content={content.ogLocale ?? SITE.defaultLanguage} />
 <meta property="og:image" content={canonicalImageSrc} />
 <meta property="og:image:alt" content={imageAlt} />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta
-  property="og:description"
-  content={content.description ? content.description : SITE.description}
-/>
+<meta property="og:image:type" content={imageType} />
+<meta property="og:image:width" content={String(imageWidth)} />
+<meta property="og:image:height" content={String(imageHeight)} />
+<meta property="og:description" content={description} />
 <meta property="og:site_name" content={SITE.title} />
-
-<!-- Twitter Tags -->
-<!-- <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content={OPEN_GRAPH.twitter} />
-<meta name="twitter:title" content={formattedContentTitle} />
-<meta
-  name="twitter:description"
-  content={content.description ? content.description : SITE.description}
-/>
-<meta name="twitter:image" content={canonicalImageSrc} />
-<meta name="twitter:image:alt" content={imageAlt} /> -->
 
 <!-- JSON-LD Structured Data -->
 <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+{softwareSchema && (
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(softwareSchema)}
+  />
+)}
 {breadcrumbItems.length > 1 && (
   <script
     type="application/ld+json"
     set:html={JSON.stringify(breadcrumbList)}
   />
 )}
-{isArticle && articleSchema && (
-  <script
-    type="application/ld+json"
-    set:html={JSON.stringify(articleSchema)}
-  />
+{webPageSchema && (
+  <script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
 )}

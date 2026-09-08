@@ -51,14 +51,6 @@ for (let i = index + 1; i < CONFIG.SIDEBAR.length; i++) {
       canonicalURL={canonicalURL}
       site={Astro.site}
     />
-
-    <title>
-      {
-        content.title
-          ? `${content.title} - ${CONFIG.SITE.title}`
-          : CONFIG.SITE.title
-      }
-    </title>
   </head>
 
   <body class="bg-slate-100">
