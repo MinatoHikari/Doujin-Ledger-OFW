@@ -1,0 +1,55 @@
+---
+description: 首页友情链接布局与对齐规则（与文档卡片三列对齐）
+globs: src/pages/index.astro
+alwaysApply: false
+---
+
+# 友情链接布局规则
+
+修改首页「友情链接」或「文档」入口卡片时，遵守以下约定。实现参考：`src/pages/index.astro`。
+
+## 布局（与文档区对齐）
+
+- 文档区与友链区共用同一套栅格：`grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-5xl mx-auto p-4`
+- 不要用 `sm:flex-1` + 空占位 `div` 凑三列；空位留给 grid 自然空着
+- 卡片不要用 `m-4` 破坏列宽；间距只靠外层 `gap-4` / `p-4`
+- 友链卡片宽度必须与上方文档三列对齐（同列同宽）
+
+## 图标与文字对齐
+
+- 每张友链卡片内，图标放在**统一高度**的容器里，例如：
+  `flex h-28 w-full items-center justify-center p-3`
+- 图标用 `object-contain`，在容器内居中；容器要有 padding，避免贴边
+- 默认 logo 尺寸：`w-16 h-16`
+- 个别 logo 视觉偏小可单独放大（如 `imgClass: "w-24 h-24"`），但仍必须放在同一 `h-28` 容器内，保证各卡标题基线齐平
+- 不要只靠加大 `margin` 把小图「顶下去」；用固定高度容器 + 居中
+
+## 数据与渲染
+
+- `friendshipLink` 只放有效友链，不要塞空 `url` 占位项
+- 可选字段 `imgClass` 仅覆盖 logo 尺寸，不改变外层栅格与图标容器高度
+
+## 反例
+
+```astro
+<!-- ❌ flex-1 会把两张卡拉得比文档区更宽 -->
+<ul class="flex ...">
+  <a class="m-4 sm:flex-1 ...">...</a>
+  <div class="sm:flex-1" /><!-- 无 margin 的占位更会乱宽 -->
+</ul>
+
+<!-- ❌ 放大某一 logo 却不加统一高度容器 → 文字被挤乱 -->
+<img class="w-24 h-24 my-6" />
+```
+
+```astro
+<!-- ✅ 三列 grid + 统一图标槽 -->
+<ul class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-5xl mx-auto p-4">
+  <a class="... p-4">
+    <span class="mb-3 flex h-28 w-full items-center justify-center p-3">
+      <img class:list={["object-contain rounded", imgClass ?? "w-16 h-16"]} />
+    </span>
+    <h2>...</h2>
+  </a>
+</ul>
+```

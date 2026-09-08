@@ -53,16 +53,11 @@ const friendshipLink = [
     img: "/cngal.org.logo.png",
   },
   {
-    title: "",
-    description: "",
-    url: "",
-    img: "",
-  },
-  {
-    title: "",
-    description: "",
-    url: "",
-    img: "",
+    title: "珀光印界",
+    description: "你的高端色彩定制师",
+    url: "https://poguangyinjie.com/",
+    img: "/poguangjinjie.jpg",
+    imgClass: "w-24 h-24",
   },
 ];
 const { content = {}, canonicalURL } = Astro.props;
@@ -153,12 +148,12 @@ const { content = {}, canonicalURL } = Astro.props;
       </header>
       <div class="mt-4 text-center text-lg font-semibold">文档</div>
       <nav class="bg-slate-100">
-        <ul class="flex flex-wrap gap-4 max-w-5xl mx-auto text-left">
+        <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-5xl mx-auto p-4 text-left">
           {
             navItems.map(({ title, description, url, icon: ico }) => (
               <a
                 href={url}
-                class="m-4 w-full bg-white rounded-md hover:-translate-y-1 hover:shadow-lg transition-all sm:flex-1 items-center p-4 inline-block"
+                class="w-full bg-white rounded-md hover:-translate-y-1 hover:shadow-lg transition-all items-center p-4 inline-block"
               >
                 <span class="flex flex-col items-center justify-center">
                   {ico === DoorEnter && (
@@ -181,34 +176,33 @@ const { content = {}, canonicalURL } = Astro.props;
       <div class="pt-4 text-center text-lg font-semibold bg-slate-100">
         友情链接
       </div>
-      <nav class="bg-slate-100">
-        <ul class="flex flex-wrap gap-4 max-w-5xl mx-auto text-left">
+      <nav class="bg-slate-100 pb-8">
+        <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-5xl mx-auto p-4 text-left">
           {
-            friendshipLink.map(({ title, description, url, img }) => {
-              if (url) {
-                return (
-                  <a
-                    href={url}
-                    target="_blank"
-                    class="m-4 w-full flex flex-col bg-white rounded-md hover:-translate-y-1 hover:shadow-lg transition-all sm:flex-1 items-center p-4 inline-block"
-                  >
-                    <span class="flex flex-col items-center justify-center">
+            friendshipLink
+              .filter((item) => item.url)
+              .map(({ title, description, url, img, imgClass }) => (
+                <a
+                  href={url}
+                  target="_blank"
+                  class="w-full bg-white rounded-md hover:-translate-y-1 hover:shadow-lg transition-all items-center p-4 inline-block"
+                >
+                  <span class="flex flex-col items-center justify-center">
+                    <span class="mb-3 flex h-28 w-full items-center justify-center p-3">
                       <img
                         src={img}
-                        class="text-7xl inline-block mb-2 text-[#3C82F6] w-16"
-                        alt=""
+                        class:list={[
+                          "object-contain rounded",
+                          imgClass ?? "w-16 h-16",
+                        ]}
+                        alt={title}
                       />
-                      <h2 class="text-lg font-medium">{title}</h2>
-                      <p class="text-slate-500">{description}</p>
                     </span>
-                  </a>
-                );
-              } else {
-                return (
-                  <div class="w-full flex flex-col bg-transparent sm:flex-1 sm:hidden md:inline-block lg:inline-block" />
-                );
-              }
-            })
+                    <h2 class="text-lg font-medium">{title}</h2>
+                    <p class="text-slate-500">{description}</p>
+                  </span>
+                </a>
+              ))
           }
         </ul>
       </nav>
