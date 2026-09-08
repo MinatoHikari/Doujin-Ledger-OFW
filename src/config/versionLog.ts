@@ -6,6 +6,14 @@ export interface VersionLog {
 
 export const versionLogs: VersionLog[] = [
   {
+    version: "3.3.0",
+    date: "2026/09/08",
+    changes: [
+      "支持nfc入单，商品多选模式下写入nfc贴纸后使用",
+      "优化页面间过渡动画",
+    ],
+  },
+  {
     version: "3.2.2",
     date: "2026/08/25",
     changes: [
