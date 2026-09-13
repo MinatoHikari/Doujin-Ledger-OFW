@@ -6,6 +6,15 @@ export interface VersionLog {
 
 export const versionLogs: VersionLog[] = [
   {
+    version: "3.4.0",
+    date: "2026/09/12",
+    changes: [
+      "支持USB连接打印机",
+      "完善远程数据库功能",
+      "过渡动画优化、代码架构优化"
+    ],
+  },
+  {
     version: "3.3.0",
     date: "2026/09/08",
     changes: [

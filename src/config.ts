@@ -47,8 +47,12 @@ export const SIDEBAR: SidebarItem[] = [
     link: "/core/snapshot",
     description: "使用快照保存与恢复摊位数据状态",
   },
-
   { text: "进阶", header: true },
+  {
+    text: "连接外设",
+    link: "/advanced/connect-device",
+    description: "连接外设（打印机、扫码枪、NFC等）",
+  },
   {
     text: "多人协作",
     link: "/advanced/cooperate",
@@ -69,7 +73,6 @@ export const SIDEBAR: SidebarItem[] = [
     link: "/advanced/backup",
     description: "导出导入货品与订单、CSV 编辑规范与备份迁移",
   },
-
   { text: "页面图文说明", header: true },
   {
     text: "新单据",
@@ -121,6 +124,6 @@ export const SIDEBAR: SidebarItem[] = [
 ];
 
 export const LastestRelease = {
-  url: "https://openlist.ztzl.moe/d/tianyi/doujin-ledger-3.3.0.apk?sign=GK-0Tc-JlJeQDwWGVspo5Doq5pNv8qPumZs7sSkUtgM=:0",
-  version: "3.3.0",
+  url: "https://openlist.ztzl.moe/d/tianyi/doujin-ledger-3.4.0.apk?sign=5TpyWiur9IdGKoISA08R9aEtKjW7LUSj_jDRU09cJC0=:0",
+  version: "3.4.0",
 };
