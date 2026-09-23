@@ -6,6 +6,14 @@ export interface VersionLog {
 
 export const versionLogs: VersionLog[] = [
   {
+    version: "3.5.1",
+    date: "2026/09/12",
+    changes: [
+      "修复同步商品时图片第一个商品图片覆盖其他商品",
+      "现在单据卡片可以设置为显示uuid",
+    ],
+  },
+  {
     version: "3.5.0",
     date: "2026/09/12",
     changes: [

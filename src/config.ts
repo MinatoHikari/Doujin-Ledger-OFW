@@ -124,6 +124,6 @@ export const SIDEBAR: SidebarItem[] = [
 ];
 
 export const LastestRelease = {
-  url: "https://openlist.ztzl.moe/d/tianyi/doujin-ledger-3.5.0.apk?sign=1TtRn1V3OaQFkRQkECB28X8ARfOl1WH0bUn2Im-hwKM=:0",
-  version: "3.5.0",
+  url: "https://openlist.ztzl.moe/d/tianyi/doujin-ledger-3.5.1.apk?sign=nyJOw7aNC78k9WnTxC3yb4EKewEFXfiHLAirh-_V0Dk=:0",
+  version: "3.5.1",
 };
