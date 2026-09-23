@@ -6,6 +6,16 @@ export interface VersionLog {
 
 export const versionLogs: VersionLog[] = [
   {
+    version: "3.5.0",
+    date: "2026/09/12",
+    changes: [
+      "重构同步逻辑，现在同步更加稳定",
+      "ios、安卓端互通改造",
+      "修复多选框勾选后不刷新勾上或取消勾选状态",
+      "修复多选商品后优惠界面会出现商品编辑界面的一些按钮"
+    ],
+  },
+  {
     version: "3.4.0",
     date: "2026/09/12",
     changes: [
