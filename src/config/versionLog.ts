@@ -6,6 +6,18 @@ export interface VersionLog {
 
 export const versionLogs: VersionLog[] = [
   {
+    version: "3.6.0",
+    date: "2026/09/12",
+    changes: [
+      "同步单据时现在可以发送通知",
+      "支持切换主题颜色",
+      "支持自定义BLE 蓝牙设备名",
+      "合并设置项目；点单模式的蓝牙推送和普通模式开关合并",
+      "更加适配平板模式",
+      "新单据右上角按钮调整，增加快速打开启禁用优惠"
+    ],
+  },
+  {
     version: "3.5.1",
     date: "2026/09/12",
     changes: [
