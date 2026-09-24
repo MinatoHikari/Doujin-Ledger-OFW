@@ -6,6 +6,7 @@
         @click="nav(props.prev)"
         class="w-full text-left flex flex-nowrap"
         variant="primary"
+        size="lg"
       >
         <slot name="left" />
         <template #prefix>
@@ -19,6 +20,7 @@
         @click="nav(props.next)"
         class="w-full text-right flex flex-nowrap"
         variant="primary"
+        size="lg"
       >
         <slot name="right" />
         <template #prefix>

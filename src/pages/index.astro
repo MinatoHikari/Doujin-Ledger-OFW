@@ -80,7 +80,7 @@ const { content = {}, canonicalURL } = Astro.props;
   <body style="height:100%">
     <div class="bg-slate-100 h-full text-center">
       <header
-        class="pt-12 pb-24 px-4 bg-gradient-to-br from-slate-700 to-black"
+        class="pt-12 pb-16 sm:pb-24 px-4 bg-gradient-to-br from-slate-700 to-black"
       >
         <div class="flex items-center justify-center p-4">
           <img
@@ -103,7 +103,7 @@ const { content = {}, canonicalURL } = Astro.props;
           >
             <MainButton
               variant="primary"
-              class="w-40 px-6 md:mr-4 flex-nowrap flex items-center"
+              class="min-w-40 px-6 md:mr-4 flex-nowrap flex items-center justify-center"
               client:load
             >
               下载最新版本
@@ -113,7 +113,7 @@ const { content = {}, canonicalURL } = Astro.props;
           <a class="block md:inline-block" href="/others/download">
             <MainButton
               variant="info"
-              class="w-40 px-6 mt-4 md:mt-0 flex-nowrap flex items-center"
+              class="min-w-40 px-6 mt-4 md:mt-0 flex-nowrap flex items-center justify-center"
               client:load
             >
               其他渠道下载
@@ -126,7 +126,7 @@ const { content = {}, canonicalURL } = Astro.props;
           <div class="mt-4 flex flex-col items-center">
             <div class="text-white text-sm mb-2">扫码下载</div>
             <div
-              class="bg-white p-2 rounded-lg inline-block"
+              class="bg-white p-2 rounded-lg inline-block [&>svg]:w-44 [&>svg]:h-auto"
               set:html={qrCodeSvg}
             />
           </div>
@@ -137,7 +137,7 @@ const { content = {}, canonicalURL } = Astro.props;
           >
             <MainButton
               variant="secondary"
-              class="w-40 px-6 mt-4 flex-nowrap flex"
+              class="min-w-40 px-6 mt-4 flex-nowrap flex items-center justify-center"
               client:load
             >
               支持作者
@@ -151,24 +151,28 @@ const { content = {}, canonicalURL } = Astro.props;
         <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-5xl mx-auto p-4 text-left">
           {
             navItems.map(({ title, description, url, icon: ico }) => (
-              <a
-                href={url}
-                class="w-full bg-white rounded-md hover:-translate-y-1 hover:shadow-lg transition-all items-center p-4 inline-block"
-              >
-                <span class="flex flex-col items-center justify-center">
-                  {ico === DoorEnter && (
-                    <DoorEnter class="text-7xl inline-block m-10 text-[#3C82F6]" />
-                  )}
-                  {ico === Cup && (
-                    <Cup class="text-7xl inline-block m-10 text-[#3C82F6]" />
-                  )}
-                  {ico === ZoomQ && (
-                    <ZoomQ class="text-7xl inline-block m-10 text-[#3C82F6]" />
-                  )}
-                  <h2 class="text-lg font-medium">{title}</h2>
-                  <p class="text-slate-500">{description}</p>
-                </span>
-              </a>
+              <li>
+                <a
+                  href={url}
+                  class="w-full bg-white rounded-md hover:-translate-y-1 hover:shadow-lg transition-all items-center p-4 inline-block"
+                >
+                  <span class="flex flex-col items-center justify-center">
+                    <span class="mb-3 flex h-28 w-full items-center justify-center p-3">
+                      {ico === DoorEnter && (
+                        <DoorEnter class="text-6xl text-[#3C82F6]" />
+                      )}
+                      {ico === Cup && (
+                        <Cup class="text-6xl text-[#3C82F6]" />
+                      )}
+                      {ico === ZoomQ && (
+                        <ZoomQ class="text-6xl text-[#3C82F6]" />
+                      )}
+                    </span>
+                    <h2 class="text-lg font-medium">{title}</h2>
+                    <p class="text-slate-500">{description}</p>
+                  </span>
+                </a>
+              </li>
             ))
           }
         </ul>
@@ -182,26 +186,28 @@ const { content = {}, canonicalURL } = Astro.props;
             friendshipLink
               .filter((item) => item.url)
               .map(({ title, description, url, img, imgClass }) => (
-                <a
-                  href={url}
-                  target="_blank"
-                  class="w-full bg-white rounded-md hover:-translate-y-1 hover:shadow-lg transition-all items-center p-4 inline-block"
-                >
-                  <span class="flex flex-col items-center justify-center">
-                    <span class="mb-3 flex h-28 w-full items-center justify-center p-3">
-                      <img
-                        src={img}
-                        class:list={[
-                          "object-contain rounded",
-                          imgClass ?? "w-16 h-16",
-                        ]}
-                        alt={title}
-                      />
+                <li>
+                  <a
+                    href={url}
+                    target="_blank"
+                    class="w-full bg-white rounded-md hover:-translate-y-1 hover:shadow-lg transition-all items-center p-4 inline-block"
+                  >
+                    <span class="flex flex-col items-center justify-center">
+                      <span class="mb-3 flex h-28 w-full items-center justify-center p-3">
+                        <img
+                          src={img}
+                          class:list={[
+                            "object-contain rounded",
+                            imgClass ?? "w-16 h-16",
+                          ]}
+                          alt={title}
+                        />
+                      </span>
+                      <h2 class="text-lg font-medium">{title}</h2>
+                      <p class="text-slate-500">{description}</p>
                     </span>
-                    <h2 class="text-lg font-medium">{title}</h2>
-                    <p class="text-slate-500">{description}</p>
-                  </span>
-                </a>
+                  </a>
+                </li>
               ))
           }
         </ul>

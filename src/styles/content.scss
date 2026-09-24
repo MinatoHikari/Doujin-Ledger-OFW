@@ -1,42 +1,44 @@
 .content {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin-top: 1.77rem;
-  }
-  h1 {
-    font-size: 22pt;
-    font-weight: 400;
-  }
-  h2 {
-    font-size: 17pt;
-    font-weight: 500;
-  }
-  h3 {
-    font-size: 15pt;
-    font-weight: 600;
-  }
-  h4 {
-    font-size: 13pt;
-  }
+  // 中文正文行高略放宽，其余间距节奏交给 prose（@tailwindcss/typography）
   p {
-    margin-top: 0.77rem;
-    color: var(--color-slate-600);
-  }
-  a {
-    color: var(--color-blue-600);
-  }
-
-  pre.astro-code {
-    margin: 0.5rem;
+    line-height: 1.85;
   }
 
   code {
     font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
       Consolas, "Liberation Mono", "Courier New", monospace;
+
+    // typography 插件默认在行内代码两侧渲染反引号装饰，中文排版下去掉
+    &::before,
+    &::after {
+      content: none;
+    }
+  }
+
+  .astro-code {
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  // 长代码行在移动端可横向滚动，用细滚动条给出「可滑」的可见提示
+  .astro-code::-webkit-scrollbar {
+    height: 6px;
+  }
+  .astro-code::-webkit-scrollbar-thumb {
+    background: var(--color-slate-400);
+    border-radius: 9999px;
+  }
+  .astro-code::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  @media (max-width: 640px) {
+    .astro-code {
+      padding: 0.75rem;
+    }
+    .component-preview {
+      padding: 1.5rem;
+    }
   }
 
   .component-preview {
@@ -52,10 +54,5 @@
     border: 1px solid var(--color-slate-200);
     margin: 0.5rem;
     resize: both;
-  }
-
-  .astro-code {
-    padding: 1rem;
-    border-radius: 0.44rem;
   }
 }

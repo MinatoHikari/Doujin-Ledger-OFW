@@ -12,7 +12,6 @@
   "dependencies": {
     "@algolia/client-search": "^5.57.0",
     "@astrojs/sitemap": "^3.7.4",
-    "@astrojs/tailwind": "^6.0.2",
     "@astrojs/vercel": "^11.0.10",
     "@docsearch/css": "^5.0.5",
     "@docsearch/react": "^5.0.5",

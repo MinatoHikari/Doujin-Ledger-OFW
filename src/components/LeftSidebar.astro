@@ -1,11 +1,12 @@
 ---
 import { SIDEBAR } from "../config";
 const { currentPage } = Astro.props;
-const currentPageMatch = currentPage.slice(1);
 
 const isCurrentPage = (item) => {
   if (item.link) {
-    return item.link.includes(currentPageMatch);
+    return (
+      item.link.replace(/\/+$/, "") === currentPage.replace(/\/+$/, "")
+    );
   }
   return false;
 };
@@ -43,12 +44,3 @@ const getLinkClasses = (link) => {
     </ul>
   </nav>
 </aside>
-
-<script is:inline>
-  window.addEventListener("DOMContentLoaded", (event) => {
-    var target = document.querySelector('[aria-current="page"]');
-    if (target && target.offsetTop > window.innerHeight - 100) {
-      document.querySelector(".nav-groups").scrollTop = target.offsetTop;
-    }
-  });
-</script>

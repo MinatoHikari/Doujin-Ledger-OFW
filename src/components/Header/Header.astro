@@ -1,16 +1,16 @@
 ---
 import { SITE } from "../../config";
 import SkipToContent from "./SkipToContent.astro";
-import Dropdown from "./DropdownNav.vue";
+import MobileNav from "./MobileNav.vue";
 import MenuIcon from "~icons/tabler/menu-2";
-import Pinned from "~icons/tabler/pinned";
+import XIcon from "~icons/tabler/x";
 import { Image } from "astro:assets";
 
 const { currentPage } = Astro.props;
 ---
 
 <header
-  class="p-3 bg-slate-100 bg-opacity-80 backdrop-blur-md border-b text-slate-900"
+  class="p-3 bg-slate-100/80 backdrop-blur-md border-b border-slate-200 text-slate-900"
 >
   <SkipToContent />
   <nav
@@ -18,10 +18,10 @@ const { currentPage } = Astro.props;
     class="max-w-7xl mx-auto flex justify-between items-center px-4"
   >
     <div class="flex flex-nowrap items-center">
-      <Dropdown class="mr-2 md:hidden" client:only="vue" offsetSkidding={70}>
+      <MobileNav class="mr-2 md:hidden" client:load currentPage={currentPage}>
         <MenuIcon slot="trigger" />
-        <Pinned slot="anchor" />
-      </Dropdown>
+        <XIcon slot="close" />
+      </MobileNav>
       <span class="h-10 w-10 inline-block mr-2">
         <img src="/appicon.png" alt="appicon" class="rounded-lg" />
       </span>
