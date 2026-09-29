@@ -124,6 +124,17 @@ export const SIDEBAR: SidebarItem[] = [
 ];
 
 export const LastestRelease = {
-  url: "https://openlist.ztzl.moe/d/tianyi/doujin-ledger-3.6.0.apk?sign=cx1HLWCrwxNDYMTjqBbF1GBrVhxuwBa-jDsUPiyr6tc=:0",
-  version: "3.6.0",
+  url: "https://openlist.ztzl.moe/d/tianyi/doujin-ledger-4.0.1.apk?sign=1HGYO5dOdzhCHKVue5ghZ_oZdaxj91r0UiecN2x4wYs=:0",
+  version: "4.0.1",
+};
+
+/**
+ * iOS（TestFlight 分发）当前可更新到的版本。
+ *
+ * 单独一个字段的原因：App Store 的 lookup 接口查不到 TestFlight 的构建，
+ * iOS 端只能读这里。每次往 TestFlight 上传新构建时，把它改成新构建的
+ * version（pubspec.yaml 里的 x.y.z+build）。
+ */
+export const TestFlightRelease = {
+  version: "0.4.0+7",
 };

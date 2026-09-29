@@ -6,7 +6,7 @@ export interface VersionLog {
 
 export const versionLogs: VersionLog[] = [
   {
-    version: "4.0.0",
+    version: "4.0.1",
     date: "2026/09/29",
     changes: [
       "新增工作台模式，设置页面设置项合并",

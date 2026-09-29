@@ -1,19 +1,14 @@
-import { LastestRelease } from "../../config";
+import { LastestRelease, TestFlightRelease } from "../../config";
 import { getVersionLog } from "../../config/versionLog";
 
 // endpoint https://docs.astro.build/en/guides/endpoints/
 
-/**
- * iOS（TestFlight 分发）当前可更新到的版本。
- * 每次往 TestFlight 上传新构建时，把这里同步改成新构建的 version（pubspec 里的 x.y.z+build）。
- * 之所以单独一个字段：App Store 的 lookup 接口查不到 TestFlight 的构建，
- * 所以 iOS 端只能读这里。
- */
-const TESTFLIGHT_VERSION = "0.4.0+7";
-
 export async function GET({ params, request }) {
   const versionLog = getVersionLog(LastestRelease.version);
-  const testflightLog = getVersionLog(TESTFLIGHT_VERSION);
+  // iOS 的版本号带 +build（如 0.4.0+7），版本日志里通常只记 x.y.z，
+  // 查不到就回退到最新版本那一份，免得弹窗里没有更新内容
+  const testflightLog =
+    getVersionLog(TestFlightRelease.version) ?? versionLog;
   return new Response(
     JSON.stringify({
       version: LastestRelease.version,
@@ -21,7 +16,7 @@ export async function GET({ params, request }) {
       text: versionLog?.changes || [],
       // 安卓端解析时 ignoreUnknownKeys = true，认不出这个字段也不影响它
       testflight: {
-        version: TESTFLIGHT_VERSION,
+        version: TestFlightRelease.version,
         text: testflightLog?.changes || [],
       },
     })
