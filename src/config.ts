@@ -132,9 +132,12 @@ export const LastestRelease = {
  * iOS（TestFlight 分发）当前可更新到的版本。
  *
  * 单独一个字段的原因：App Store 的 lookup 接口查不到 TestFlight 的构建，
- * iOS 端只能读这里。每次往 TestFlight 上传新构建时，把它改成新构建的
- * version（pubspec.yaml 里的 x.y.z+build）。
+ * iOS 端只能读这里。
+ *
+ * 注意：iOS 端只拿得到 CFBundleShortVersionString（"0.4.0"，不带 build 号），
+ * 所以比对时**只看营销版本 x.y.z**。传新 TestFlight 构建时要把营销版本一起抬
+ * （0.4.0 → 0.4.1）App 才会提示；只改 build 号（0.4.0+8）不会提示。
  */
 export const TestFlightRelease = {
-  version: "0.4.0+7",
+  version: "0.4.1",
 };
