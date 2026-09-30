@@ -6,6 +6,13 @@ export interface VersionLog {
 
 export const versionLogs: VersionLog[] = [
   {
+    version: "4.1.0",
+    date: "2026/09/29",
+    changes: [
+      "重新设计消息提示",
+    ],
+  },
+  {
     version: "4.0.1",
     date: "2026/09/29",
     changes: [
