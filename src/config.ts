@@ -139,5 +139,5 @@ export const LastestRelease = {
  * （0.4.0 → 0.4.1）App 才会提示；只改 build 号（0.4.0+8）不会提示。
  */
 export const TestFlightRelease = {
-  version: "0.4.2",
+  version: "0.4.3",
 };
