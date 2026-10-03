@@ -6,6 +6,13 @@ export interface VersionLog {
 
 export const versionLogs: VersionLog[] = [
   {
+    version: "4.2.1",
+    date: "2026/10/03",
+    changes: [
+      "修复zip包导入图片失败",
+    ],
+  },
+  {
     version: "4.2.0",
     date: "2026/10/03",
     changes: [
