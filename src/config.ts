@@ -124,8 +124,8 @@ export const SIDEBAR: SidebarItem[] = [
 ];
 
 export const LastestRelease = {
-  url: "https://openlist.ztzl.moe/d/tianyi/doujin-ledger-4.1.0.apk?sign=6NvPO1TBkTPBElFl3bsROYIKqsgJzns0V_OznacUfuk=:0",
-  version: "4.1.0",
+  url: "https://openlist.ztzl.moe/d/tianyi/doujin-ledger-4.2.0.apk?sign=8kXRfSzZOf3l9xtD-Nf0QV4JcqHdaDUOAt9jnuK9us0=:0",
+  version: "4.2.0",
 };
 
 /**
@@ -139,5 +139,5 @@ export const LastestRelease = {
  * （0.4.0 → 0.4.1）App 才会提示；只改 build 号（0.4.0+8）不会提示。
  */
 export const TestFlightRelease = {
-  version: "0.4.3",
+  version: "0.5.0",
 };
